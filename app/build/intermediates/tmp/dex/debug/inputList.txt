@@ -1,0 +1,4 @@
+H:\AndroidStudio_1.0WS\TvBox\app\build\intermediates\classes\debug
+H:\AndroidStudio_1.0WS\TvBox\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3-78070a72eededf9c99a2acdeb5d2470e770b74fc.jar
+H:\AndroidStudio_1.0WS\TvBox\app\build\intermediates\pre-dexed\debug\Baidu_CyberPlayer_SDK_1.7s-7b4344ee4b22b75fb62d058a5e654148a1ed957a.jar
+H:\AndroidStudio_1.0WS\TvBox\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-09a4d0de4ee59a11faa06b11e65bfb04b3047f74.jar

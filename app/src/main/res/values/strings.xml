@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Vanrui_MediaPlatform</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_item_clear_memory_cache">Clear memory cache</string>
+    <string name="menu_item_clear_disc_cache">Clear disc cache</string>
+    <string name="menu_item_pause_on_scroll">Pause on scroll</string>
+    <string name="menu_item_pause_on_fling">Pause on fling</string>
+</resources>

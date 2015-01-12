@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dip">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="120dip"
+        android:adjustViewBounds="true"
+        android:contentDescription="Image"
+        android:scaleType="centerCrop" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="35dip"
+        style="@style/ProgressBarStyle" />
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="match_parent"
+        android:layout_height="120dip"
+        android:padding="15dp"
+/>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:textAlignment="center"
+        android:clickable="false"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:text="万科TV"
+        />
+</FrameLayout>
