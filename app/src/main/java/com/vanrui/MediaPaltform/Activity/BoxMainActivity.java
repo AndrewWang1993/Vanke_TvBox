@@ -40,12 +40,12 @@ public class BoxMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lancher);
 		addView();
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads().detectDiskWrites().detectNetwork()
-                .penaltyLog().build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
-                .penaltyLog().penaltyDeath().build());
+//        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//                .detectDiskReads().detectDiskWrites().detectNetwork()
+//                .penaltyLog().build());
+//        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//                .detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+//                .penaltyLog().penaltyDeath().build());
 
 //        if (android.os.Build.VERSION.SDK_INT > 9) {       //网络严格模式
 //            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -62,7 +62,6 @@ public class BoxMainActivity extends Activity {
             public void onFocusChange(View v, boolean hasFocus) {
 
             }
-
         });
 
 		lancherView.initListener(new View.OnClickListener() {

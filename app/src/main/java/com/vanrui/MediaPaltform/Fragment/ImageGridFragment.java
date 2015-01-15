@@ -21,6 +21,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +64,7 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
     public static final int VIDEO = 1;
     public static final int IMAGE = 2;
     public static final int WEB = 3;
-
+    public Thread th;
     String tag;
     /**
      * 列表图片URL
@@ -99,24 +100,19 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
 
-        XmlPullParser xmlPullParser = null;
-        try {
-            InputStream is = util.getInput(Constants.XMLURL);
-            XmlPullParserFactory pullFactory = XmlPullParserFactory.newInstance();
-            xmlPullParser = pullFactory.newPullParser();
-            xmlPullParser.setInput(is, "UTF-8");
-        } catch (Exception e) {
-            Log.v("TAG", e.toString());
+        parserWhitThread();
+
+        synchronized (th) {
+            try {
+                th.wait();
+            } catch (Exception e) {
+                Log.v("Thread Exception", e.toString());
+            }
         }
-        ArrayList<Object> arrarys = MediaParser.ParseXml(xmlPullParser);
-        Log.v("TAG", arrarys.toString());
-        mLishHash = util.process(arrarys);
-        Log.v("TAG", mLishHash.toString());
-        imageUrls = util.getGridDescOrPic(mLishHash, tag, false);
-        Log.v("TAG", imageUrls.toString());
-        descString = util.getGridDescOrPic(mLishHash, tag, true);
-        Log.v("TAG", descString.toString());
+
+
     }
+
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -130,8 +126,8 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
 
                 if (tag.equals(Constants.Media_Type.VIDEO)) {
                     String source;
-                    contentURL=util.getUrls(mLishHash, tag, position + 1);
-                   source=contentURL;
+                    contentURL = util.getUrls(mLishHash, tag, position + 1);
+                    source = contentURL;
                     if (source == null || source.equals("")) {
                         Toast.makeText(getActivity().getApplicationContext(), "Error URL", Toast.LENGTH_LONG).show();
                     } else {
@@ -140,10 +136,10 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
                         startActivity(intent);
                     }
                 } else if (tag.equals(Constants.Media_Type.PICTURE)) {
-                    picsURL=util.getFlipPics(mLishHash,position+1);
+                    picsURL = util.getFlipPics(mLishHash, position + 1);
                     startImagePagerActivity(picsURL);
                 } else if (tag.equals(Constants.Media_Type.WEB)) {
-                    contentURL=util.getUrls(mLishHash,tag,position+1);
+                    contentURL = util.getUrls(mLishHash, tag, position + 1);
                     Uri uri = Uri.parse(contentURL);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
@@ -240,4 +236,38 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
         TextView desc;
         ImageView imageicon;
     }
+
+
+
+    public void parserWhitThread() {
+        th = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    synchronized (this) {
+                        XmlPullParser xmlPullParser = null;
+                        try {
+                            InputStream is = util.getInput(Constants.XMLURL);
+                            XmlPullParserFactory pullFactory = XmlPullParserFactory.newInstance();
+                            xmlPullParser = pullFactory.newPullParser();
+                            xmlPullParser.setInput(is, "UTF-8");
+                        } catch (Exception e) {
+                            Log.v("TAG", e.toString());
+                        }
+                        ArrayList<Object> arrarys = MediaParser.ParseXml(xmlPullParser);
+                        mLishHash = util.process(arrarys);
+                        imageUrls = util.getGridDescOrPic(mLishHash, tag, false);
+                        descString = util.getGridDescOrPic(mLishHash, tag, true);
+                        this.notify();
+                    }
+                } catch (Exception e) {
+                    Log.v("Thread Exception", e.toString());
+                }
+
+            }
+        };
+        th.start();
+    }
+
+
 }
