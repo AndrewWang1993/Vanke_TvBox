@@ -42,19 +42,15 @@ import com.vanrui.MediaPaltform.R;
 public class ImagePagerFragment extends BaseFragment {
 
     public static final int INDEX = 4;
-    final static String TAG = "tag";
-    final static String TAG_VIDEO = "video";
-    final static String TAG_IMAGE = "image";
-    final static String TAG_WEB = "web";
 
-    String[] imageUrls = Constants.IMAGES;
+    String[] imageUrls;
 
     DisplayImageOptions options;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String tag = getArguments().getString(TAG);
+        imageUrls= getArguments().getStringArray(Constants.Media_Type.TAG_PIC_ARRAY);
         options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.drawable.ic_empty)
                 .showImageOnFail(R.drawable.ic_error)
@@ -72,7 +68,7 @@ public class ImagePagerFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fr_image_pager, container, false);
         ViewPager pager = (ViewPager) rootView.findViewById(R.id.pager);
         pager.setAdapter(new ImageAdapter());
-        pager.setCurrentItem(getArguments().getInt(Constants.Extra.IMAGE_POSITION, 0));
+        pager.setCurrentItem(0);
         return rootView;
     }
 

@@ -1,20 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
-    buildToolsVersion "21.1.1"
-
-    defaultConfig {
-        applicationId "com.baidu.bvideoviewsample1"
-        minSdkVersion 4
-        targetSdkVersion 4
+    signingConfigs {
     }
-
+    compileSdkVersion 17
+    buildToolsVersion "21.1.2"
+    defaultConfig {
+        applicationId 'com.vanrui.MediaPaltform'
+        minSdkVersion 15
+        targetSdkVersion 17
+    }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+    }
+    productFlavors {
     }
 }
 

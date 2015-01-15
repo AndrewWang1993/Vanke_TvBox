@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
+import android.widget.ImageView;
 
 
 import com.vanrui.MediaPaltform.Constants;
@@ -30,15 +31,13 @@ import com.vanrui.MediaPaltform.R;
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
 public class SimpleImageActivity extends FragmentActivity {
-    final static String TAG="tag";
-    final static String TAG_VIDEO="video";
-    final static String TAG_IMAGE="image";
-    final static String TAG_WEB="web";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         int frIndex = getIntent().getIntExtra(Constants.Extra.FRAGMENT_INDEX, 0);
+        String[] picArray = getIntent().getStringArrayExtra(Constants.Media_Type.TAG_PIC_ARRAY);
         Fragment fr;
         String tag;
         switch (frIndex) {
@@ -47,9 +46,9 @@ public class SimpleImageActivity extends FragmentActivity {
                 tag = ImageGridFragment.class.getSimpleName();
                 fr = getSupportFragmentManager().findFragmentByTag(tag);
                 if (fr == null) {
-                    ImageGridFragment imageGridFragmentVideo=new ImageGridFragment();
-                    Bundle bundle=new Bundle();
-                    bundle.putString(TAG,TAG_VIDEO);
+                    ImageGridFragment imageGridFragmentVideo = new ImageGridFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(Constants.Media_Type.TAG, Constants.Media_Type.VIDEO);
                     imageGridFragmentVideo.setArguments(bundle);
                     fr = imageGridFragmentVideo;
                 }
@@ -58,9 +57,9 @@ public class SimpleImageActivity extends FragmentActivity {
                 tag = ImageGridFragment.class.getSimpleName();
                 fr = getSupportFragmentManager().findFragmentByTag(tag);
                 if (fr == null) {
-                    ImageGridFragment imageGridFragmentVideo=new ImageGridFragment();
-                    Bundle bundle=new Bundle();
-                    bundle.putString(TAG,TAG_IMAGE);
+                    ImageGridFragment imageGridFragmentVideo = new ImageGridFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(Constants.Media_Type.TAG, Constants.Media_Type.PICTURE);
                     imageGridFragmentVideo.setArguments(bundle);
                     fr = imageGridFragmentVideo;
                 }
@@ -69,9 +68,9 @@ public class SimpleImageActivity extends FragmentActivity {
                 tag = ImageGridFragment.class.getSimpleName();
                 fr = getSupportFragmentManager().findFragmentByTag(tag);
                 if (fr == null) {
-                    ImageGridFragment imageGridFragmentVideo=new ImageGridFragment();
-                    Bundle bundle=new Bundle();
-                    bundle.putString(TAG,TAG_WEB);
+                    ImageGridFragment imageGridFragmentVideo = new ImageGridFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(Constants.Media_Type.TAG, Constants.Media_Type.WEB);
                     imageGridFragmentVideo.setArguments(bundle);
                     fr = imageGridFragmentVideo;
                 }
@@ -80,8 +79,12 @@ public class SimpleImageActivity extends FragmentActivity {
                 tag = ImagePagerFragment.class.getSimpleName();
                 fr = getSupportFragmentManager().findFragmentByTag(tag);
                 if (fr == null) {
-                    fr = new ImagePagerFragment();
-                    fr.setArguments(getIntent().getExtras());
+
+                    ImagePagerFragment imagePagerFragment  = new ImagePagerFragment();
+                    Bundle bundle=new Bundle();
+                    bundle.putStringArray(Constants.Media_Type.TAG_PIC_ARRAY,picArray);
+                    imagePagerFragment.setArguments(bundle);
+                    fr=imagePagerFragment;
                 }
                 break;
         }

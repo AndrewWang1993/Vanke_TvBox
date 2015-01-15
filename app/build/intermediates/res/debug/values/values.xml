@@ -14,7 +14,7 @@
     <!-- From: file:/H:/AndroidStudio_1.0WS/TvBox/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
-    <string name="app_name">Vanrui_MediaPlatform</string>
+    <string name="app_name">VankeMedia</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_item_clear_disc_cache">Clear disc cache</string>
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>

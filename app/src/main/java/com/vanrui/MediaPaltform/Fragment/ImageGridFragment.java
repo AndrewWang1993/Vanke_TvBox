@@ -43,8 +43,17 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListe
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.vanrui.MediaPaltform.Activity.SimpleImageActivity;
 import com.vanrui.MediaPaltform.Constants;
+import com.vanrui.MediaPaltform.Parser.MediaParser;
 import com.vanrui.MediaPaltform.Player.VideoViewPlayingActivity;
 import com.vanrui.MediaPaltform.R;
+import com.vanrui.MediaPaltform.Util.util;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
@@ -54,20 +63,32 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
     public static final int VIDEO = 1;
     public static final int IMAGE = 2;
     public static final int WEB = 3;
-    final static String TAG = "tag";
-    final static String TAG_VIDEO = "video";
-    final static String TAG_IMAGE = "image";
-    final static String TAG_WEB = "web";
+
     String tag;
+    /**
+     * 列表图片URL
+     */
+    String[] imageUrls;
+    /**
+     * 列表信息描述
+     */
+    String[] descString;
+    /**
+     * 二级列表图片
+     */
+    String[] picsURL;
+    /**
+     * 网址或者视频URL
+     */
+    String contentURL;
 
-    String[] imageUrls = Constants.IMAGES;
-
+    ArrayList<HashMap<String, String[]>> mLishHash;
     DisplayImageOptions options;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tag = getArguments().getString(TAG);
+        tag = getArguments().getString(Constants.Media_Type.TAG);
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.ic_stub)
                 .showImageForEmptyUri(R.drawable.ic_empty)
@@ -77,11 +98,29 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
+
+        XmlPullParser xmlPullParser = null;
+        try {
+            InputStream is = util.getInput(Constants.XMLURL);
+            XmlPullParserFactory pullFactory = XmlPullParserFactory.newInstance();
+            xmlPullParser = pullFactory.newPullParser();
+            xmlPullParser.setInput(is, "UTF-8");
+        } catch (Exception e) {
+            Log.v("TAG", e.toString());
+        }
+        ArrayList<Object> arrarys = MediaParser.ParseXml(xmlPullParser);
+        Log.v("TAG", arrarys.toString());
+        mLishHash = util.process(arrarys);
+        Log.v("TAG", mLishHash.toString());
+        imageUrls = util.getGridDescOrPic(mLishHash, tag, false);
+        Log.v("TAG", imageUrls.toString());
+        descString = util.getGridDescOrPic(mLishHash, tag, true);
+        Log.v("TAG", descString.toString());
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fr_image_grid, container, false);
         listView = (GridView) rootView.findViewById(R.id.grid);
         listView.setAdapter(new ImageAdapter());
@@ -89,8 +128,10 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (tag.equals(TAG_VIDEO)) {
-                    String source = "http://bcs.duapp.com/hhshipin/media/18%E6%97%A5%E5%AE%98%E6%96%B910%E4%BD%B3%E7%90%83.mp4";
+                if (tag.equals(Constants.Media_Type.VIDEO)) {
+                    String source;
+                    contentURL=util.getUrls(mLishHash, tag, position + 1);
+                   source=contentURL;
                     if (source == null || source.equals("")) {
                         Toast.makeText(getActivity().getApplicationContext(), "Error URL", Toast.LENGTH_LONG).show();
                     } else {
@@ -98,14 +139,15 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
                         intent.setData(Uri.parse(source));
                         startActivity(intent);
                     }
-                } else if (tag.equals(TAG_IMAGE)) {
-                    startImagePagerActivity(position);
-                } else if (tag.equals(TAG_WEB)) {
-                    Uri uri = Uri.parse("http://www.qq.com");
+                } else if (tag.equals(Constants.Media_Type.PICTURE)) {
+                    picsURL=util.getFlipPics(mLishHash,position+1);
+                    startImagePagerActivity(picsURL);
+                } else if (tag.equals(Constants.Media_Type.WEB)) {
+                    contentURL=util.getUrls(mLishHash,tag,position+1);
+                    Uri uri = Uri.parse(contentURL);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }
-
             }
         });
         return rootView;
@@ -146,17 +188,15 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
                 holder.progressBar = (ProgressBar) view.findViewById(R.id.progress);
                 holder.desc = (TextView) view.findViewById(R.id.desc);
                 holder.imageicon = (ImageView) view.findViewById(R.id.icon);
-                if (tag.equals(TAG_VIDEO)) {
+                holder.desc.setText(descString[position]);
+                if (tag.equals(Constants.Media_Type.VIDEO)) {
                     holder.imageicon.setImageDrawable(getResources().getDrawable(R.drawable.ic_play));
-                    holder.desc.setText("万科视频 " + position);
-                } else if (tag.equals(TAG_WEB)) {
+                } else if (tag.equals(Constants.Media_Type.WEB)) {
                     holder.imageicon.setImageDrawable(getResources().getDrawable(R.drawable.ic_explore));
                     holder.imageicon.setScaleX(1.8f);
                     holder.imageicon.setScaleY(1.8f);
                     holder.imageicon.setImageAlpha(200);
-                    holder.desc.setText("万科网址 " + position);
-                }else {
-                    holder.desc.setText("万科图片 " + position);
+                } else {
                 }
                 view.setTag(holder);
             } else {

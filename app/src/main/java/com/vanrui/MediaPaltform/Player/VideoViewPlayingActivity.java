@@ -1,5 +1,6 @@
 package com.vanrui.MediaPaltform.Player;
 
+import com.vanrui.MediaPaltform.Constants;
 import com.vanrui.MediaPaltform.R;
 
 import com.baidu.cyberplayer.core.BMediaController;
@@ -27,19 +28,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+/**
+ * Created by wxm on 2015/1/12 in Vanke
+ */
 
+/**
+ * 流媒体播放类
+ * @author wangxm-wr
+ * @since 2015/1/15
+ */
 public class VideoViewPlayingActivity extends Activity implements OnPreparedListener,
         OnCompletionListener,
         OnErrorListener,
         OnInfoListener,
         OnPlayingBufferCacheListener {
+
     private final String TAG = "VideoViewPlayingActivity";
-
-
-    private String AK = "aQPcpGoGa43BAa3TiZw5OsVB";
-
-    private String SK = "hrWz5lPSbzh92Mxz";
-
 
     private String mVideoSource = null;
 
@@ -201,6 +205,8 @@ public class VideoViewPlayingActivity extends Activity implements OnPreparedList
         /**
          * 设置ak及sk的前16位
          */
+        String AK = Constants.BAIDU_APIKEY.AK;
+        String SK = Constants.BAIDU_APIKEY.SK;
         BVideoView.setAKSK(AK, SK);
 
         /**

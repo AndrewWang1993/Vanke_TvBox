@@ -8,97 +8,141 @@
 package com.vanrui.MediaPaltform;
 
 public final class R {
+    public static final class anim {
+        public static final int zoin=0x7f040000;
+        public static final int zoout=0x7f040001;
+    }
     public static final class attr {
     }
     public static final class color {
-        public static final int white=0x7f040000;
+        public static final int white=0x7f050000;
     }
     public static final class dimen {
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
-        public static final int subtitle_font_size=0x7f050002;
-        public static final int subtitle_setting_font=0x7f050003;
-        public static final int subtitle_setting_height=0x7f050004;
-        public static final int subtitle_setting_width=0x7f050005;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
+        public static final int subtitle_font_size=0x7f060002;
+        public static final int subtitle_setting_font=0x7f060003;
+        public static final int subtitle_setting_height=0x7f060004;
+        public static final int subtitle_setting_width=0x7f060005;
     }
     public static final class drawable {
-        public static final int cyberplayer_listbtn_normal=0x7f020000;
-        public static final int cyberplayer_listbtn_pressed=0x7f020001;
-        public static final int cyberplayer_next_play=0x7f020002;
-        public static final int cyberplayer_next_play_disable=0x7f020003;
-        public static final int cyberplayer_next_play_pressed=0x7f020004;
-        public static final int cyberplayer_play_media=0x7f020005;
-        public static final int cyberplayer_play_media_disable=0x7f020006;
-        public static final int cyberplayer_play_media_pressed=0x7f020007;
-        public static final int cyberplayer_retreat_media=0x7f020008;
-        public static final int cyberplayer_retreat_media_disable=0x7f020009;
-        public static final int cyberplayer_retreat_media_pressed=0x7f02000a;
-        public static final int cyberplayer_seekbar_background=0x7f02000b;
-        public static final int cyberplayer_seekbar_background_normal=0x7f02000c;
-        public static final int cyberplayer_seekbar_background_process=0x7f02000d;
-        public static final int cyberplayer_seekbar_background_sound_normal=0x7f02000e;
-        public static final int cyberplayer_seekbar_background_sound_process=0x7f02000f;
-        public static final int cyberplayer_seekbar_cache=0x7f020010;
-        public static final int cyberplayer_seekbar_normal=0x7f020011;
-        public static final int cyberplayer_seekbar_ratio=0x7f020012;
-        public static final int cyberplayer_seekbar_ratio_white=0x7f020013;
-        public static final int cyberplayer_stop_media=0x7f020014;
-        public static final int cyberplayer_stop_media_disable=0x7f020015;
-        public static final int cyberplayer_stop_media_pressed=0x7f020016;
-        public static final int cyberplayer_textbtn_background_blue=0x7f020017;
-        public static final int cyberplayer_titlebar_return=0x7f020018;
-        public static final int cyberplayer_volumebar_background=0x7f020019;
-        public static final int ic_empty=0x7f02001a;
-        public static final int ic_error=0x7f02001b;
-        public static final int ic_explore=0x7f02001c;
-        public static final int ic_launcher=0x7f02001d;
-        public static final int ic_play=0x7f02001e;
-        public static final int ic_stub=0x7f02001f;
-        public static final int icon_list_folder=0x7f020020;
-        public static final int icon_list_unknown=0x7f020021;
-        public static final int icon_list_videofile=0x7f020022;
+        public static final int bg_lancher=0x7f020000;
+        public static final int blue_no_shadow=0x7f020001;
+        public static final int cyberplayer_listbtn_normal=0x7f020002;
+        public static final int cyberplayer_listbtn_pressed=0x7f020003;
+        public static final int cyberplayer_next_play=0x7f020004;
+        public static final int cyberplayer_next_play_disable=0x7f020005;
+        public static final int cyberplayer_next_play_pressed=0x7f020006;
+        public static final int cyberplayer_play_media=0x7f020007;
+        public static final int cyberplayer_play_media_disable=0x7f020008;
+        public static final int cyberplayer_play_media_pressed=0x7f020009;
+        public static final int cyberplayer_retreat_media=0x7f02000a;
+        public static final int cyberplayer_retreat_media_disable=0x7f02000b;
+        public static final int cyberplayer_retreat_media_pressed=0x7f02000c;
+        public static final int cyberplayer_seekbar_background=0x7f02000d;
+        public static final int cyberplayer_seekbar_background_normal=0x7f02000e;
+        public static final int cyberplayer_seekbar_background_process=0x7f02000f;
+        public static final int cyberplayer_seekbar_background_sound_normal=0x7f020010;
+        public static final int cyberplayer_seekbar_background_sound_process=0x7f020011;
+        public static final int cyberplayer_seekbar_cache=0x7f020012;
+        public static final int cyberplayer_seekbar_normal=0x7f020013;
+        public static final int cyberplayer_seekbar_ratio=0x7f020014;
+        public static final int cyberplayer_seekbar_ratio_white=0x7f020015;
+        public static final int cyberplayer_stop_media=0x7f020016;
+        public static final int cyberplayer_stop_media_disable=0x7f020017;
+        public static final int cyberplayer_stop_media_pressed=0x7f020018;
+        public static final int cyberplayer_textbtn_background_blue=0x7f020019;
+        public static final int cyberplayer_titlebar_return=0x7f02001a;
+        public static final int cyberplayer_volumebar_background=0x7f02001b;
+        public static final int dark_no_shadow=0x7f02001c;
+        public static final int green_no_shadow=0x7f02001d;
+        public static final int ic_empty=0x7f02001e;
+        public static final int ic_error=0x7f02001f;
+        public static final int ic_explore=0x7f020020;
+        public static final int ic_launcher=0x7f020021;
+        public static final int ic_play=0x7f020022;
+        public static final int ic_stub=0x7f020023;
+        public static final int icon_code=0x7f020024;
+        public static final int icon_list_folder=0x7f020025;
+        public static final int icon_list_unknown=0x7f020026;
+        public static final int icon_list_videofile=0x7f020027;
+        public static final int icon_pic=0x7f020028;
+        public static final int icon_setting=0x7f020029;
+        public static final int icon_vanke_mediaplatform=0x7f02002a;
+        public static final int icon_video=0x7f02002b;
+        public static final int icon_web=0x7f02002c;
+        public static final int orange_no_shadow=0x7f02002d;
+        public static final int pink_no_shadow=0x7f02002e;
+        public static final int red_no_shadow=0x7f02002f;
+        public static final int shadow_big_center=0x7f020030;
+        public static final int shadow_big_left=0x7f020031;
+        public static final int shadow_big_right=0x7f020032;
+        public static final int white_border=0x7f020033;
+        public static final int yellow_no_shadow=0x7f020034;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000d;
-        public static final int controller_holder=0x7f090005;
-        public static final int desc=0x7f09000b;
-        public static final int getET=0x7f090001;
-        public static final int grid=0x7f090006;
-        public static final int icon=0x7f09000a;
-        public static final int image=0x7f090008;
-        public static final int item_clear_disc_cache=0x7f09000f;
-        public static final int item_clear_memory_cache=0x7f09000e;
-        public static final int item_pause_on_fling=0x7f090011;
-        public static final int item_pause_on_scroll=0x7f090010;
-        public static final int loading=0x7f09000c;
-        public static final int pager=0x7f090007;
-        public static final int playBtn=0x7f090002;
-        public static final int progress=0x7f090009;
-        public static final int root=0x7f090003;
-        public static final int videopathget=0x7f090000;
-        public static final int view_holder=0x7f090004;
+        public static final int action_settings=0x7f0a0021;
+        public static final int app_shadow=0x7f0a0015;
+        public static final int code_shadow=0x7f0a001e;
+        public static final int controller_holder=0x7f0a0007;
+        public static final int desc=0x7f0a000d;
+        public static final int game_shadow=0x7f0a0018;
+        public static final int getET=0x7f0a0003;
+        public static final int grid=0x7f0a0008;
+        public static final int icon=0x7f0a000c;
+        public static final int image=0x7f0a000a;
+        public static final int item_clear_disc_cache=0x7f0a0023;
+        public static final int item_clear_memory_cache=0x7f0a0022;
+        public static final int item_pause_on_fling=0x7f0a0025;
+        public static final int item_pause_on_scroll=0x7f0a0024;
+        public static final int layout_app=0x7f0a0014;
+        public static final int layout_code=0x7f0a001d;
+        public static final int layout_game=0x7f0a0017;
+        public static final int layout_item=0x7f0a0001;
+        public static final int layout_setting=0x7f0a001a;
+        public static final int loading=0x7f0a000e;
+        public static final int main=0x7f0a0000;
+        public static final int pager=0x7f0a0009;
+        public static final int picture=0x7f0a0016;
+        public static final int playBtn=0x7f0a0004;
+        public static final int progress=0x7f0a000b;
+        public static final int root=0x7f0a0005;
+        public static final int set_refimg_1=0x7f0a000f;
+        public static final int set_refimg_2=0x7f0a0010;
+        public static final int set_refimg_3=0x7f0a0011;
+        public static final int set_refimg_4=0x7f0a0012;
+        public static final int setting=0x7f0a001f;
+        public static final int setting_shadow=0x7f0a001b;
+        public static final int settings_layout=0x7f0a0013;
+        public static final int video=0x7f0a0019;
+        public static final int videopathget=0x7f0a0002;
+        public static final int view_holder=0x7f0a0006;
+        public static final int web=0x7f0a001c;
+        public static final int white_boder=0x7f0a0020;
     }
     public static final class layout {
         public static final int ac_home=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int controllerplaying=0x7f030002;
-        public static final int fr_image_grid=0x7f030003;
-        public static final int fr_image_pager=0x7f030004;
-        public static final int item_grid_image=0x7f030005;
-        public static final int item_pager_image=0x7f030006;
+        public static final int activity_lancher=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int controllerplaying=0x7f030003;
+        public static final int fr_image_grid=0x7f030004;
+        public static final int fr_image_pager=0x7f030005;
+        public static final int item_grid_image=0x7f030006;
+        public static final int item_pager_image=0x7f030007;
+        public static final int layout_lancher=0x7f030008;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
-        public static final int main_menu=0x7f080001;
+        public static final int main=0x7f090000;
+        public static final int main_menu=0x7f090001;
     }
     public static final class string {
-        public static final int action_settings=0x7f060000;
-        public static final int app_name=0x7f060001;
-        public static final int hello_world=0x7f060002;
-        public static final int menu_item_clear_disc_cache=0x7f060003;
-        public static final int menu_item_clear_memory_cache=0x7f060004;
-        public static final int menu_item_pause_on_fling=0x7f060005;
-        public static final int menu_item_pause_on_scroll=0x7f060006;
+        public static final int action_settings=0x7f070000;
+        public static final int app_name=0x7f070001;
+        public static final int hello_world=0x7f070002;
+        public static final int menu_item_clear_disc_cache=0x7f070003;
+        public static final int menu_item_clear_memory_cache=0x7f070004;
+        public static final int menu_item_pause_on_fling=0x7f070005;
+        public static final int menu_item_pause_on_scroll=0x7f070006;
     }
     public static final class style {
         /** 
@@ -107,10 +151,10 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
-        public static final int ProgressBarStyle=0x7f070002;
+        public static final int AppTheme=0x7f080001;
+        public static final int ProgressBarStyle=0x7f080002;
     }
 }
