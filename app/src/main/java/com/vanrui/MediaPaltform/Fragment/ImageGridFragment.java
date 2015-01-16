@@ -82,6 +82,10 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
      * 网址或者视频URL
      */
     String contentURL;
+    /**
+     * 是否超时
+     */
+    boolean istimeout;
 
     ArrayList<HashMap<String, String[]>> mLishHash;
     DisplayImageOptions options;
@@ -102,15 +106,18 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
 
         parserWhitThread();
 
+        istimeout = true;
         synchronized (th) {
             try {
-                th.wait();
+                th.wait(3000);
             } catch (Exception e) {
                 Log.v("Thread Exception", e.toString());
             }
         }
-
-
+        if (istimeout) {
+            Toast.makeText(getActivity().getApplicationContext(), "超时", Toast.LENGTH_LONG).show();
+            getActivity().finish();
+        }
     }
 
 
@@ -120,7 +127,9 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
         View rootView = inflater.inflate(R.layout.fr_image_grid, container, false);
         listView = (GridView) rootView.findViewById(R.id.grid);
         listView.setAdapter(new ImageAdapter());
-        listView.setOnItemClickListener(new OnItemClickListener() {
+        listView.setOnItemClickListener(
+
+                new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -238,7 +247,6 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
     }
 
 
-
     public void parserWhitThread() {
         th = new Thread() {
             @Override
@@ -258,6 +266,7 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
                         mLishHash = util.process(arrarys);
                         imageUrls = util.getGridDescOrPic(mLishHash, tag, false);
                         descString = util.getGridDescOrPic(mLishHash, tag, true);
+                        istimeout=false;
                         this.notify();
                     }
                 } catch (Exception e) {
