@@ -149,12 +149,10 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
                     picsURL = util.getFlipPics(mLishHash, position + 1);
                     startImagePagerActivity(picsURL);
                 } else if (tag.equals(Constants.Media_Type.WEB)) {
-//                    contentURL = util.getUrls(mLishHash, tag, position + 1);
-//                    Uri uri = Uri.parse(contentURL);
-//                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//                    startActivity(intent);
-                    Intent i=new Intent(getActivity().getApplicationContext(),webActivity.class);
-                    startActivity(i);
+                    contentURL = util.getUrls(mLishHash, tag, position + 1);
+                    Intent intent=new Intent(getActivity().getApplicationContext(),webActivity.class);
+                    intent.putExtra(Constants.Media_Type.WEB,contentURL);
+                    startActivity(intent);
                 }
             }
         });

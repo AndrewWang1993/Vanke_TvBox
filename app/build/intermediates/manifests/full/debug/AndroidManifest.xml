@@ -47,6 +47,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.vanrui.MediaPaltform.Activity.webActivity"
+            android:label="@string/title_activity_web" >
+        </activity>
     </application>
 
 </manifest>

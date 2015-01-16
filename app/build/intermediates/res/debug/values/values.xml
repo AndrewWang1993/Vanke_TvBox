@@ -20,6 +20,7 @@
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>
     <string name="menu_item_pause_on_fling">Pause on fling</string>
     <string name="menu_item_pause_on_scroll">Pause on scroll</string>
+    <string name="title_activity_web">webActivity</string>
     <!-- From: file:/H:/AndroidStudio_1.0WS/TvBox/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
