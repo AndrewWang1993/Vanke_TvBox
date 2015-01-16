@@ -43,6 +43,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.vanrui.MediaPaltform.Activity.SimpleImageActivity;
+import com.vanrui.MediaPaltform.Activity.webActivity;
 import com.vanrui.MediaPaltform.Constants;
 import com.vanrui.MediaPaltform.Parser.MediaParser;
 import com.vanrui.MediaPaltform.Player.VideoViewPlayingActivity;
@@ -148,10 +149,12 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
                     picsURL = util.getFlipPics(mLishHash, position + 1);
                     startImagePagerActivity(picsURL);
                 } else if (tag.equals(Constants.Media_Type.WEB)) {
-                    contentURL = util.getUrls(mLishHash, tag, position + 1);
-                    Uri uri = Uri.parse(contentURL);
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
+//                    contentURL = util.getUrls(mLishHash, tag, position + 1);
+//                    Uri uri = Uri.parse(contentURL);
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                    startActivity(intent);
+                    Intent i=new Intent(getActivity().getApplicationContext(),webActivity.class);
+                    startActivity(i);
                 }
             }
         });
